@@ -16,7 +16,7 @@ st.sidebar.write('checking number input')
 num = st.sidebar.text_input('Enter any number')
 
 if str(num).isnumeric():
-    st.sidebar.write('You entered 0')
+    st.sidebar.write('You entered a number')
 else:
     raise ValueError('You did not enter a number')
 
