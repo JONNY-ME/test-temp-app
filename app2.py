@@ -1,5 +1,5 @@
 import streamlit as st
-import random 
+import re 
 
 '''
 App that simulates an interactive different types of user input
@@ -31,9 +31,11 @@ else:
 
 # Email
 st.sidebar.write('checking email input')
-email = st.sidebar.text_input('Enter a random email')
+email = st.sidebar.text_input('Enter a valid email')
 
-if '@' in email:
+mail = re.compile(r'[^@]+@[^@]+\.[^@]+')
+if mail.match(email) and not email.endswith('example.com'):
     st.sidebar.write('You entered an email')
 else:
+    st.sidebar.write('Please enter a valid email')
     raise ValueError('You did not enter an email')
