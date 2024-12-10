@@ -37,5 +37,8 @@ mail = re.compile(r'[^@]+@[^@]+\.[^@]+')
 if mail.match(email) and not email.endswith('example.com'):
     st.sidebar.write('You entered an email')
 else:
-    st.sidebar.write('Please enter a valid email')
+    if email.endswith('example.com'):
+        st.sidebar.write('@example.com is not allowed')
+    else:
+        st.sidebar.write('Please enter a valid email')
     raise ValueError('You did not enter an email')
