@@ -13,9 +13,9 @@ st.sidebar.title('User Input Types')
 
 # Number
 st.sidebar.write('checking number input')
-num = st.sidebar.number_input('Enter first number')
+num = st.sidebar.text_input('Enter any number')
 
-if str(num).isdigit():
+if str(num).isnumeric():
     st.sidebar.write('You entered 0')
 else:
     raise ValueError('You did not enter a number')
