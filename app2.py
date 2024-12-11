@@ -34,11 +34,11 @@ st.sidebar.write('checking email input')
 email = st.sidebar.text_input('Enter a valid email')
 
 mail = re.compile(r'[^@]+@[^@]+\.[^@]+')
-if mail.match(email) and email.endswith('@gmail.com'):
+if mail.match(email) and email.endswith('@oaisb.info'):
     st.sidebar.write('You entered an email')
 else:
     if mail.match(email):
-        st.sidebar.write('only gmail email is allowed')
+        st.sidebar.write('only oaisb.info email is allowed')
     else:
         st.sidebar.write('Please enter a valid email')
     raise ValueError('You did not enter an email')
