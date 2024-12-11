@@ -33,7 +33,13 @@ if num:
             raise ValueError('You did not enter a name')
 
         def check_for_fake(email):
-            fakes = ['test', 'user', 'admin', 'guest', 'anonymous', 'superuser']
+            fakes = [
+                'test', 'user', 'admin', 'guest', 'anonymous', 'superuser', 'support', 'info', 'mail',
+                'hello', 'world', 'example', 'sample', 'domain', 'bot', 'help', 'feedback', 'service',
+                'no-reply', 'contact', 'me', 'you', 'someone', 'anything', 'something', 'anything',
+                'something', 'anything', 'something', 'anything', 'something', 'anything', 'something',
+                'team', 'staff', 'office', 'home', 'work', 'personal', 'business', 'company', 'org',
+            ]
             for fake in fakes:
                 if fake in email.lower():
                     return False
