@@ -33,25 +33,15 @@ if num:
             raise ValueError('You did not enter a name')
 
         def check_for_fake(email):
-            fakes = [
-                'test', 'user', 'admin', 'guest', 'anonymous', 'superuser', 'support', 'info', 'mail',
-                'hello', 'world', 'example', 'sample', 'domain', 'bot', 'help', 'feedback', 'service',
-                'no-reply', 'contact', 'me', 'you', 'someone', 'anything', 'something', 'anything',
-                'something', 'anything', 'something', 'anything', 'something', 'anything', 'something',
-                'team', 'staff', 'office', 'home', 'work', 'personal', 'business', 'company', 'org',
-            ]
-            for fake in fakes:
-                if fake in email.lower():
-                    return False
-            if not email.endswith('@oaisb.info'):
+            if not email.endswith('@oaisb.info') or not email.startswith('paexternal'):
                 return False
 
             return True
 
         samples = [
-            "enter a valid oaisb.info email is allowed",
             "try to come up with a valid email with oaisb.info",
-            "just checked and it seems like you entered a test email",
+            "only paexternal email is allowed",
+            "wrong! try user's email",
         ]
 
 
