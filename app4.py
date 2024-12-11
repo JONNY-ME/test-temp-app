@@ -17,14 +17,12 @@ n_inputs = 0
 
 st.write('Введите свои учетные данные ниже:')
 email = st.text_input('Электронная почта')
-password = st.text_input('Пароль', type='password')
 
 sorted_credentials = []
 
 
 while 1:
-    if email and password:
-        sorted_credentials.append((email, password))
+    if email:
+        sorted_credentials.append(email, )
         n_inputs += 1
         email = st.text_input('Электронная почта')
-        password = st.text_input('Пароль', type='password')

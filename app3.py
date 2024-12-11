@@ -16,21 +16,22 @@ I am a software developer with experience in Python, JavaScript, and SQL.
 
 streamlit.write('''
 ### Projects
-- [Project 1](
-- [Project 2](
-- [Project 3](
-''')
-
-streamlit.write('''
-### Contact
-- [Email](mailto:
-- [LinkedIn](https://www.linkedin.com/in/)
+- AI Chatbot
+- E-commerce website
+- Portfolio website
 ''')
 
 streamlit.write('''
 ### Resume
 - [Download](https://test-temp-app-nefurdi3fh4f4x3jymgskm.streamlit.app/)
 ''')
+
+streamlit.write('''
+### Contact
+- [Email](mailto:dummy@example.com)
+- [LinkedIn](https://www.linkedin.com/in/)
+''')
+
 
 
 # set footer with an input
