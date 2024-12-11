@@ -28,4 +28,4 @@ while 1:
     if answer:
         sorted_answers.append(answer, )
         n_inputs += 1
-        answer = st.text_input('Answer')
+        answer = st.text_input(f'Answer {n_inputs + 1}')
