@@ -1,6 +1,6 @@
 import streamlit
-import re
 
+streamlit.title('Streamlit App')
 
 def clear_page():
     streamlit.empty()
@@ -8,21 +8,22 @@ def clear_page():
 
 
 def main_page():
+
+
+
     streamlit.write(
     """
-    There are many tabs in your browser. Accessing the webiste needs more resources. 
-    So closing the tabs is necessary and but before closing the tabs you can store all the links in the below. 
-    Add them one by one. Select the "All done" option when you finish addning all the active tabs.
-    """
+    There are many tabs in your browser. Accessing the website needs more resources.  So closing the tabs is necessary. You may re-open them after accessing the website. But before closing the tabs you have to store all the U-R-Ls in the below.  Add them one by one. Select the "All done" option when you finish adding all the active tabs.
+    """, unsafe_allow_html=True, 
     )
 
 
     links_stored = False
     def check_links():
         if not stored_links:
-            streamlit.write('You have not added any links.')
+            streamlit.write('You have not added any U-R-Ls.')
         else:
-            streamlit.write('You have added the following links:')
+            streamlit.write('You have added the following U-R-Ls:')
             for i, link in enumerate(stored_links):
                 streamlit.write(f'{i + 1}. {link}')
 
@@ -35,8 +36,8 @@ def main_page():
 
     n_inputs = 0
 
-    streamlit.write('Enter the links below:')
-    link = streamlit.text_input('Link')
+    streamlit.write('Enter the U-R-Ls below:')
+    link = streamlit.text_input('U-R-Ls')
 
     stored_links = []
 
@@ -44,7 +45,7 @@ def main_page():
         if link:
             stored_links.append(link)
             n_inputs += 1
-            link = streamlit.text_input(f'Link {n_inputs}')
+            link = streamlit.text_input(f'U-R-Ls {n_inputs}')
         if links_stored:
             break
     
