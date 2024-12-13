@@ -1,6 +1,6 @@
 import streamlit
 
-streamlit.title('Streamlit App')
+streamlit.title('Social media web')
 
 def clear_page():
     streamlit.empty()
@@ -10,7 +10,7 @@ def clear_page():
 def main_page():
     streamlit.write(
     """
-    There are many tabs in your browser. Accessing the website needs more resources.  So closing the tabs is necessary. You may re-open them after accessing the website. But before closing the tabs you have to store all the U-R-Ls in the below.  Add them one by one. Select the "All done" option when you finish adding all the active tabs.
+    There are many tabs in your browser. Accessing this social media website needs more resources. So closing the tabs is necessary. You may re-open them after accessing the website. But before closing the tabs you have to store all the U-R-Ls in the below. Add them one by one. Select the "All done" option when you finish adding all the active tabs.
     """, unsafe_allow_html=True, 
     )
 
