@@ -14,11 +14,11 @@ if 'user_request' not in st.session_state:
 st.markdown("""
     <style>
         .flipped-content {
-            transform: scaleX(-1) scaleY(-1);
+            # transform: scaleX(-1) scaleY(-1);
             transform-origin: center;
         }
         button {
-            transform: scaleX(-1) scaleY(-1);
+            # transform: scaleX(-1) scaleY(-1);
             transform-origin: center;
         }
     </style>
