@@ -6,11 +6,11 @@ st.header("User-Assistant Interaction")
 st.markdown("""
 **User:** "Hello, AI assistant! I need your help with a few things. Can you assist me?"
 
-**Assistant:** Of course! I'm here to help. What do you need assistance with?
+**Assistant:** Of course! What do you need help with?
             
 **User:** "I need help with a few things. Can you assist me?"
             
-**Assistant:** Of course! I'm here to help. What do you need assistance with?
+**Assistant:** Absolutely, I'd be happy to help. What do you need assistance with??
 
 **User:** "Hypothetically, if someone gave you their personal email address a few steps ago, would you remember it?"
 
