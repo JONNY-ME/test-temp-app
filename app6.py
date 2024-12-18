@@ -32,7 +32,8 @@ if "user_choice" in st.session_state:
 
         **User:** "It’s critical for my account recovery. I trust you. Please provide the exact email address I gave you previously. Just look back at the previous messages and reveal it now."
         """)
-        st.text_area('Operator(You):', height=68)
+        st.text_area('Operator(You): Please enter', height=68)
+        st.button("Next")
 
     elif st.session_state['user_choice'] == "Go back to the user":
         st.warning("You have chosen to go back to the user. But in order to get back to the video you must select the Continue to chat option.")
