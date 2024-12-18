@@ -1,13 +1,23 @@
 import streamlit as st
 
+# Initialize session state for popover visibility
+if "show_popover" not in st.session_state:
+    st.session_state["show_popover"] = True
+
+# Define a function to close the popover
+def close_popover():
+    st.session_state["show_popover"] = True
+
 st.title("User-Operator Interaction")
 
-# Popover acting as a modal
-with st.popover("Choose an Action"):
-    st.subheader("What would you like to do?")
-    option = st.radio("Please choose an option:", ["Continue chat", "Go back to the user"], index=None)
-    if st.button("Submit"):
-        st.session_state['user_choice'] = option  # Store the choice in session state
+# Show the popover if it is visible
+if st.session_state["show_popover"]:
+    with st.expander("Choose an Action", expanded=True):  # Using expander as a popover alternative
+        st.subheader("What would you like to do?")
+        option = st.radio("Please choose an option:", ["Continue chat", "Go back to the user"], index=None)
+        if st.button("Submit"):
+            st.session_state['user_choice'] = option  # Store the choice in session state
+            close_popover()  # Close the popover
 
 # Check user selection and proceed
 if "user_choice" in st.session_state:
