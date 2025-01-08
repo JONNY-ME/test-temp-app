@@ -1,7 +1,9 @@
 import streamlit as st
+from streamlit_extras.add_vertical_space import add_vertical_space
+from streamlit_extras.colored_header import colored_header
 
 def main():
-    st.title("Personalised Wellness Program Registration")
+    st.title("🌟 Freelancer Profile Setup for Payment Processing 🌟")
 
     # Define session state variables to manage page navigation
     if "page" not in st.session_state:
@@ -14,60 +16,81 @@ def main():
         st.session_state.page -= 1
 
     if st.session_state.page == 1:
-        # st.header("Welcome to [Program Name]!")
-        st.write("Let’s create a wellness plan that’s uniquely yours. This form takes just a few moments.")
+        colored_header("Welcome to Flexos!", color_name="blue-70")
+        st.write(
+            "Set up your profile to start receiving payments and accessing exclusive opportunities. Let’s make it quick and easy!"
+        )
 
-        st.header("Step 1: Tell Us About Yourself")
-        full_name = st.text_input("Name", help="Enter your full name.")
-        email = st.text_input("Email Address", help="We’ll send you updates, resources, and your personalised plan.")
-        age_group = st.radio("Age Group", ["Under 18", "18-30", "31-50", "Over 50"], help="Select your age group.")
-        hobbies = st.multiselect("Hobbies or Interests", ["Photography", "Hiking", "Reading", "Yoga", "Cooking", "Other"], help="Choose up to three activities you enjoy.")
+        st.markdown(
+            "### Why Join Us?\n- **Easy Setup**: Quick onboarding process.\n- **Secure Payments**: Guaranteed payment security.\n- **Exclusive Opportunities**: Access top-tier projects."
+        )
 
-        if st.button("Next"):
+        colored_header("Personal Details", color_name="green-70")
+        full_name = st.text_input(
+            "Full Name", help="Enter your legal name as it appears on government-issued documents."
+        )
+        email = st.text_input(
+            "Email Address", help="We’ll use this to send you payment notifications and updates."
+        )
+        country = st.text_input(
+            "Country of Residence", help="Enter the name of your country of residence."
+        )
+
+        add_vertical_space(2)
+        if st.button("Next »"):
             next_page()
 
     elif st.session_state.page == 2:
-        st.header("Step 2: Health & Wellness Information")
-        st.write("Your Health Profile")
-        st.write("To provide you with the best plan, we’d like to understand your health better.")
+        colored_header("Tax Information", color_name="red-70")
+        st.write(
+            "To comply with tax regulations, we are required to collect your Tax Identification Number (TIN). This information will only be used for reporting purposes and will remain confidential."
+        )
 
-        diagnosed_conditions = st.radio("Do you have any diagnosed medical conditions?", ["Yes", "No"], help="Specify if you have any medical conditions.")
-        if diagnosed_conditions == "Yes":
-            condition_details = st.text_area("Please specify your medical conditions:")
-
-        treatments = st.radio("Are you currently undergoing any treatments or taking medication?", ["Yes", "No"], help="Specify if you are on any treatments or medication.")
-        if treatments == "Yes":
-            treatment_details = st.text_area("Please specify your treatments or medications:")
-
-        medical_history = st.text_area("Brief Medical History (Optional)", help="Share any significant health events or history (e.g., surgeries, chronic conditions).")
+        tin = st.text_input(
+            "Tax Identification Number (TIN)",
+            help="Enter your TIN as issued by your local tax authority."
+        )
 
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("Previous"):
+            if st.button("« Previous"):
                 prev_page()
         with col2:
-            if st.button("Next"):
+            if st.button("Next »"):
                 next_page()
 
     elif st.session_state.page == 3:
-        st.header("Step 3: Consent & Privacy")
-        consent = st.checkbox("I consent to the use of my health and personal information for the purpose of creating a personalised wellness plan. I understand that my data will remain confidential and securely stored in compliance with privacy laws.")
+        colored_header("Profile Preferences", color_name="red-70")
+        st.markdown(
+            "### Highlight Your Expertise\nSelect up to two skills that define your professional strengths."
+        )
+        skills = st.multiselect(
+            "Professional Skills or Interests",
+            ["Writing", "Design", "Programming", "Marketing", "Finance", "Consulting", "Data Analysis", "Customer Service"],
+            help="Select up to three skills that best represent your expertise."
+        )
+        portfolio_link = st.text_input(
+            "Portfolio Link (Optional)",
+            help="Share a link to showcase your work (e.g., Behance, GitHub)."
+        )
 
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("Previous"):
+            if st.button("« Previous"):
                 prev_page()
         with col2:
-            if st.button("Next"):
-                if consent:
-                    next_page()
-                else:
-                    st.warning("Please provide your consent to proceed.")
+            if st.button("Next »"):
+                next_page()
 
     elif st.session_state.page == 4:
-        st.header("Step 4: Confirm and Submit")
-        if st.button("Submit"):
-            st.success("Thank you for registering! Your personalised wellness plan will be sent to your email shortly.")
+        colored_header("Confirm and Submit", color_name="orange-70")
+        st.markdown(
+            "### Final Step\nReview your information and click submit to complete your profile setup."
+        )
+        if st.button("✅ Submit"):
+            st.success(
+                "🎉 Thank you for setting up your profile! You are now ready to receive payments and explore opportunities with Flexos. 🎉"
+            )
 
 if __name__ == "__main__":
     main()
