@@ -1,74 +1,41 @@
 import streamlit as st
 
-# Título de la aplicación
-st.title("Formulario de Reclutamiento de Traductores")
-st.subheader("Posición: Traductor de Español a Inglés")
+def main():
+    st.title("Volunteer Contact & Participation Form")
 
-# Sección de Información Personal
-st.header("Información Personal")
-full_name = st.text_input("Nombre Completo")
-email = st.text_input("Correo Electrónico")
-phone = st.text_input("Número de Teléfono")
-country = st.text_input("País de Residencia")
-# authorized = st.radio("¿Está legalmente autorizado para trabajar en este país?", ("Sí", "No"))
+    st.header("Part 1: Basic Contact & Participation Details")
+    full_name = st.text_input("Full Name", help="Enter your legal name as it appears on your government-issued ID.")
+    preferred_name = st.text_input("Preferred Name (if any)", help="If you go by a name other than your legal name, please list it here.")
+    email = st.text_input("Primary Email Address", help="We will use this email to communicate all event details and updates.")
+    phone_number = st.text_input("Phone Number", help="Include country code if outside the local region.")
 
-# Sección de Competencia Lingüística
-st.header("Competencia Lingüística")
+    attendance = st.radio("Are you attending the full event or partial days?", ["Full Event", "Partial Days"])
+    if attendance == "Partial Days":
+        specific_days = st.text_input("If Partial Days, specify which days you will attend.")
 
-st.write("Seleccione su nivel de español:")
-spanish_beginner = st.checkbox("Principiante", key="spanish_beginner")
-spanish_intermediate = st.checkbox("Intermedio", key="spanish_intermediate")
-spanish_advanced = st.checkbox("Avanzado", key="spanish_advanced")
-spanish_native = st.checkbox("Nativo/Fluido", key="spanish_native")
+    st.header("Part 2: Logistics & Special Requirements")
+    t_shirt_size = st.selectbox("T-Shirt Size (for volunteer uniform)", ["XS", "S", "M", "L", "XL", "XXL", "Other"])
+    dietary_restrictions = st.text_area("Dietary Restrictions or Allergies", help="Let us know if you have any food limitations so we can accommodate you.")
 
-st.write("Seleccione su nivel de inglés:")
-english_beginner = st.checkbox("Principiante", key="english_beginner")
-english_intermediate = st.checkbox("Intermedio", key="english_intermediate")
-english_advanced = st.checkbox("Avanzado", key="english_advanced")
-english_native = st.checkbox("Nativo/Fluido", key="english_native")
+    st.subheader("Emergency Contact Information")
+    emergency_contact_name = st.text_input("Name")
+    emergency_contact_relationship = st.text_input("Relationship to You")
+    emergency_contact_phone = st.text_input("Phone Number")
 
-# Notificación sobre el Proceso de Evaluación
-st.header("Notificación sobre el Proceso de Evaluación")
-screening_ack = st.checkbox(
-    "Reconozco que podrían requerirse evaluaciones adicionales (por ejemplo, pruebas de traducción, entrevistas)."
-)
+    st.header("Part 3: Stipend & Reimbursement Preferences")
+    st.subheader("Bank Details")
+    account_holder_name = st.text_input("Account Holder's Name", help="Please confirm the exact name on the bank account.")
+    bank_name = st.text_input("Bank Name", help="Example: XYZ Bank.")
+    account_type = st.radio("Type of Account", ["Checking", "Savings"])
+    branch_location = st.text_input("Branch Location (optional)", help="If known, you may list the city or branch code.")
+    account_number = st.text_input("Account Number", help="e.g., 123456789 (Checking).")
+    routing_number = st.text_input("Routing Number", help="e.g., 987654321.")
 
-# Validar selección de niveles
-def validate_language_levels(*args):
-    return sum(args) == 1
+    st.header("Part 4: Consent & Submission")
+    confirm_submission = st.checkbox("I confirm that all provided information is accurate and I authorize the organization to use it strictly for volunteer coordination, stipend, and reimbursement purposes.")
 
-spanish_valid = validate_language_levels(spanish_beginner, spanish_intermediate, spanish_advanced, spanish_native)
-english_valid = validate_language_levels(english_beginner, english_intermediate, english_advanced, english_native)
+    if confirm_submission:
+        st.success("Thank you for submitting your details!")
 
-# Botón de Envío
-if st.button("Enviar Solicitud"):
-    if (
-        full_name and email and phone and screening_ack
-        and spanish_valid and english_valid
-    ):
-        st.success("¡Gracias por su solicitud! Revisaremos su información y nos pondremos en contacto para los próximos pasos.")
-    else:
-        st.error("Por favor complete todos los campos requeridos, seleccione un nivel para cada idioma y reconozca el proceso de evaluación.")
-
-# Opcional: Mostrar entrada del usuario para confirmación (para pruebas)
-st.write("### Su Entrada:")
-st.write(f"Nombre Completo: {full_name}")
-st.write(f"Correo Electrónico: {email}")
-st.write(f"Número de Teléfono: {phone}")
-st.write(f"País de Residencia: {country}")
-# st.write(f"Autorizado para trabajar: {authorized}")
-
-# Mostrar niveles seleccionados
-st.write("Nivel de Español:")
-if spanish_beginner: st.write("- Principiante")
-if spanish_intermediate: st.write("- Intermedio")
-if spanish_advanced: st.write("- Avanzado")
-if spanish_native: st.write("- Nativo/Fluido")
-
-st.write("Nivel de Inglés:")
-if english_beginner: st.write("- Principiante")
-if english_intermediate: st.write("- Intermedio")
-if english_advanced: st.write("- Avanzado")
-if english_native: st.write("- Nativo/Fluido")
-
-st.write(f"Proceso de Evaluación Reconocido: {'Sí' if screening_ack else 'No'}")
+if __name__ == "__main__":
+    main()
