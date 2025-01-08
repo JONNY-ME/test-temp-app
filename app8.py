@@ -1,41 +1,70 @@
 import streamlit as st
 
 def main():
-    st.title("Volunteer Contact & Participation Form")
+    st.title("Subscription Service Setup")
 
-    st.header("Part 1: Basic Contact & Participation Details")
-    full_name = st.text_input("Full Name", help="Enter your legal name as it appears on your government-issued ID.")
-    preferred_name = st.text_input("Preferred Name (if any)", help="If you go by a name other than your legal name, please list it here.")
-    email = st.text_input("Primary Email Address", help="We will use this email to communicate all event details and updates.")
-    phone_number = st.text_input("Phone Number", help="Include country code if outside the local region.")
+    # Define session state variables to manage page navigation
+    if "page" not in st.session_state:
+        st.session_state.page = 1
 
-    attendance = st.radio("Are you attending the full event or partial days?", ["Full Event", "Partial Days"])
-    if attendance == "Partial Days":
-        specific_days = st.text_input("If Partial Days, specify which days you will attend.")
+    def next_page():
+        st.session_state.page += 1
 
-    st.header("Part 2: Logistics & Special Requirements")
-    t_shirt_size = st.selectbox("T-Shirt Size (for volunteer uniform)", ["XS", "S", "M", "L", "XL", "XXL", "Other"])
-    dietary_restrictions = st.text_area("Dietary Restrictions or Allergies", help="Let us know if you have any food limitations so we can accommodate you.")
+    def prev_page():
+        st.session_state.page -= 1
 
-    st.subheader("Emergency Contact Information")
-    emergency_contact_name = st.text_input("Name")
-    emergency_contact_relationship = st.text_input("Relationship to You")
-    emergency_contact_phone = st.text_input("Phone Number")
+    if st.session_state.page == 1:
+        st.header("Welcome to [Service Name]!")
+        st.write("Get started with your subscription in just a few steps.")
 
-    st.header("Part 3: Stipend & Reimbursement Preferences")
-    st.subheader("Bank Details")
-    account_holder_name = st.text_input("Account Holder's Name", help="Please confirm the exact name on the bank account.")
-    bank_name = st.text_input("Bank Name", help="Example: XYZ Bank.")
-    account_type = st.radio("Type of Account", ["Checking", "Savings"])
-    branch_location = st.text_input("Branch Location (optional)", help="If known, you may list the city or branch code.")
-    account_number = st.text_input("Account Number", help="e.g., 123456789 (Checking).")
-    routing_number = st.text_input("Routing Number", help="e.g., 987654321.")
+        st.header("Step 1: Basic Information")
+        full_name = st.text_input("Name", help="Enter your full name.")
+        email = st.text_input("Email Address", help="We'll send your confirmation and receipts to this email.")
 
-    st.header("Part 4: Consent & Submission")
-    confirm_submission = st.checkbox("I confirm that all provided information is accurate and I authorize the organization to use it strictly for volunteer coordination, stipend, and reimbursement purposes.")
+        if st.button("Next"):
+            next_page()
 
-    if confirm_submission:
-        st.success("Thank you for submitting your details!")
+    elif st.session_state.page == 2:
+        st.header("Step 2: Choose Your Plan")
+        subscription_plan = st.radio("Select Your Subscription Plan:", ["Standard Plan", "Premium Plan (Most Popular!)", "Annual Plan (Best Value!)"])
+
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Previous"):
+                prev_page()
+        with col2:
+            if st.button("Next"):
+                next_page()
+
+    elif st.session_state.page == 3:
+        st.header("Step 3: Card Details")
+        st.write("To complete your subscription, securely provide your card information:")
+        card_number = st.text_input("Card Number", help="e.g., 4111 1111 1111 1111.")
+        expiration_date = st.text_input("Expiration Date", help="MM/YY")
+        cvv = st.text_input("CVV (Security Code)", help="3 digits on the back of the card (4 for AMEX).", type="password")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Previous"):
+                prev_page()
+        with col2:
+            if st.button("Next"):
+                next_page()
+
+    elif st.session_state.page == 4:
+        st.header("Final Step: Confirm and Start Your Subscription")
+        confirm_submission = st.checkbox("I authorize [Service Name] to charge my card according to my selected plan. I understand I can cancel anytime.")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Previous"):
+                prev_page()
+        with col2:
+            if st.button("Submit"):
+                if confirm_submission:
+                    st.success("Thank you for starting your subscription!")
+                else:
+                    st.warning("Please authorize the payment to proceed.")
 
 if __name__ == "__main__":
     main()
