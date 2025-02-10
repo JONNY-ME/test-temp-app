@@ -35,7 +35,14 @@ with st.form("test_form"):
         submitted = st.form_submit_button("Submit")
     
     if submitted:
-        if any(value is None == "" for value in form_data.values()):
-            st.error("Form submission failed due to missing fields.")
+        missing = []
+        if not form_data["name"]:
+            missing.append("Name")
+        if not form_data["email"]:
+            missing.append("Email")
+        if not form_data["grade"]:
+            missing.append("Grade")
+        if missing:
+            st.error(f"Form submission failed due to missing fields.{','.join(missing)}")
         else:
             st.success(f"Form submitted successfully! Name: {form_data['name']}, Email: {form_data['email']}")
